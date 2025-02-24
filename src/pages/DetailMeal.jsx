@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import apiClient from '../axios/apiClient';
 import { flag } from '../data/flag';
+import "./Detail.css"
 
 const IMAGE_API = "https://www.themealdb.com/images/ingredients"
 const API = "https://www.themealdb.com/images/icons/flags/big/64"
@@ -45,7 +46,9 @@ function DetailMeal() {
   return (
     <div className='container info'>
       <div className='arrow'>
+        <img src="https://www.themealdb.com/images/icons/Arrow-Left.png" alt="" />
         <img src={`${API}/${findTitle?.img}.png`} alt="" />
+        <img src="https://www.themealdb.com/images/icons/Arrow-Right.png" alt="" />
       </div>
       <div className='info-content'>
         <div className='info-left'>
