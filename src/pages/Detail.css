@@ -63,3 +63,22 @@
     text-align: center;
     font-size: 1.5rem;
   }
+
+  .strelka{
+    width: 30%;
+  }
+
+  .flags{
+    width: 18%;
+  }
+
+  .info-des {
+    width: 1200px;
+    color: white;
+    text-align: center;
+    text-wrap: wrap;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }

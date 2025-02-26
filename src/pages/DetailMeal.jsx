@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import apiClient from '../axios/apiClient';
 import { flag } from '../data/flag';
 import "./Detail.css"
@@ -9,6 +9,7 @@ const API = "https://www.themealdb.com/images/icons/flags/big/64"
 
 function DetailMeal() {
   const {id} = useParams()
+  const navigate = useNavigate()
 
   const [info, setInfo] = useState({})
 
@@ -27,7 +28,7 @@ function DetailMeal() {
 
   useEffect(() => {
     getMealById()
-  } , [])
+  } , [id])
 
   let array = []
 
@@ -39,16 +40,24 @@ function DetailMeal() {
     }
   }
 
-  console.log(array);
+ function setId(text) {
+  let newxId = text == "next" ? Number(id) + 1 : Number(id) - 1
+  navigate(`/meal/${newxId}`)
+
+ }
+
+ let textArray = info?.strInstructions?.split(",")
+ console.log(textArray);
+ 
   
 
 
   return (
     <div className='container info'>
       <div className='arrow'>
-        <img src="https://www.themealdb.com/images/icons/Arrow-Left.png" alt="" />
-        <img src={`${API}/${findTitle?.img}.png`} alt="" />
-        <img src="https://www.themealdb.com/images/icons/Arrow-Right.png" alt="" />
+        <img onClick={() => setId("prev")} className='strelka' src="https://www.themealdb.com/images/icons/Arrow-Left.png" alt="" />
+        <img className='flags' src={`${API}/${findTitle?.img}.png`} alt="" />
+        <img onClick={() => setId("next")} className='strelka' src="https://www.themealdb.com/images/icons/Arrow-Right.png" alt="" />
       </div>
       <div className='info-content'>
         <div className='info-left'>
@@ -64,7 +73,13 @@ function DetailMeal() {
           }
         </div>
       </div>
-      <div className='info-des'></div>
+      <div className='info-des'>
+        {
+          textArray?.map((item, index) => (
+            <div key={index}>{item}</div>
+          ))
+        }
+      </div>
     </div>
   )
 }

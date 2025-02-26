@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import apiClient from '../axios/apiClient'
 import ProductList from '../components/ProductList/ProductList'
 import Country from '../components/Country/Country'
+import Banner from '../Banner/Banner'
 
 
 function Home() {
@@ -27,6 +28,7 @@ function Home() {
 
   return (
     <div>
+      <Banner/>
       <ProductList data={products}/>
       <Country/>
     </div>
